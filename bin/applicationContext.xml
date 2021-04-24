@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- <bean id="studentbean" class="com.demo.beans.Student"> <property name="firstName" 
+		value="Vimal"></property> <property name="id" value="101"></property> <property 
+		name="lastName" value="Thakre"></property> </bean> -->
+
+
+	<bean class="com.demo.beans.Student" id="s2">
+		<constructor-arg type="int" value="101"></constructor-arg>
+		<constructor-arg name="firstName" value="Visahl"></constructor-arg>
+		<constructor-arg name="lastName" value=""></constructor-arg>
+		<constructor-arg ref="a1"></constructor-arg>
+		<property name="subjects">
+			<list>
+				<value>C</value>
+				<value>C++</value>
+				<value>Java</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean class="com.demo.beans.Address" id="a1">
+		<constructor-arg value="Nagpur"></constructor-arg>
+		<constructor-arg value="Maharastra"></constructor-arg>
+		<constructor-arg value="India"></constructor-arg>
+	</bean>
+
+
+	<bean class="com.demo.beans.Answer" id="ans1">
+		<constructor-arg type="int" value="111"></constructor-arg>
+		<constructor-arg value="Java is programming language"></constructor-arg>
+		<constructor-arg value="Sayali Ghagare"></constructor-arg>
+	</bean>
+
+	<bean class="com.demo.beans.Answer" id="ans2">
+		<constructor-arg type="int" value="112"></constructor-arg>
+		<constructor-arg value="Java is platform"></constructor-arg>
+		<constructor-arg value="Prachi Ambade"></constructor-arg>
+	</bean>
+
+	<bean class="com.demo.beans.Question" id="ques">
+		<constructor-arg type="int" value="101"></constructor-arg>
+		<constructor-arg value="What is Java?"></constructor-arg>
+		<constructor-arg name="answers">
+			<list>
+				<ref bean="ans1" />
+				<ref bean="ans2" />
+			</list>
+		</constructor-arg>
+		<property name="difficultyLevel">
+			<map>
+				<entry key="Java" value="Difficult"></entry>
+				<entry key="Python" value="easy"></entry>
+				<entry key="RPA" value="Medium"></entry>
+			</map>
+		</property>
+
+		<property name="setBy">
+			<map>
+				<entry key-ref="prof1" value-ref="dept1"></entry>
+				<entry key-ref="prof2" value-ref="dept1"></entry>
+			</map>
+
+		</property>
+	</bean>
+
+
+	<bean class="com.demo.beans.Professor" id="prof1">
+		<constructor-arg type="int" value="11"></constructor-arg>
+		<constructor-arg value="Prof. Dongare"></constructor-arg>
+	</bean>
+
+	<bean class="com.demo.beans.Professor" id="prof2">
+		<constructor-arg type="int" value="12"></constructor-arg>
+		<constructor-arg value="Prof. Borkar"></constructor-arg>
+	</bean>
+
+	<bean class="com.demo.beans.Department" id="dept1">
+		<constructor-arg type="int" value="20"></constructor-arg>
+		<constructor-arg value="CSE"></constructor-arg>
+	</bean>
+
+	<bean class="com.demo.beans.Department" id="dept2">
+		<constructor-arg type="int" value="21"></constructor-arg>
+		<constructor-arg value="IT"></constructor-arg>
+	</bean>
+
+
+	<!-- Autowiring Ony for Reference Type not for String and int type -->
+	<bean class="com.demo.autowire.Company" id="c1">
+		<constructor-arg value="TCS"></constructor-arg>
+		<constructor-arg value="Nagpur"></constructor-arg>
+	</bean>
+
+	<bean class="com.demo.autowire.Company" id="company">
+		<constructor-arg value="Persistent"></constructor-arg>
+		<constructor-arg value="Pune"></constructor-arg>
+	</bean>
+
+
+	<bean class="com.demo.autowire.Employee" id="emp" autowire="byName" />
+
+    <bean class="com.demo.factory.A" id="testa" factory-method="getA"></bean>
+    <bean class="com.demo.factory.PrintableFactory" id="p" factory-method="getPrintable"></bean>
+    
+</beans>  
